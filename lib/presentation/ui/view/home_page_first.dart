@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:on_graph_test_demo/presentation/router/auth_guard.gr.dart';
 import 'package:on_graph_test_demo/presentation/ui/view/widgets/5days_weather.dart';
 import 'package:on_graph_test_demo/presentation/ui/view/widgets/current_weather_container.dart';
@@ -59,6 +60,8 @@ class HomePageF extends StatelessWidget {
                   CurrentWeatherContainer(
                       state:
                       homePageController.getFullWeatherDataRes.value),
+
+                  const SizedBox(height: 20,),
                   FiveDaysForecast(
                       state:
                       homePageController.getFullWeatherDataRes.value),
@@ -104,3 +107,4 @@ class HomePageF extends StatelessWidget {
     );
   }
 }
+
