@@ -51,30 +51,17 @@ class HomePageSec extends StatelessWidget {
                 height: 35,
               ),
 
-              /* SizedBox(
-                 height: 150,
-                 child: DatePickerDialog(
-                     onDatePickerModeChange: ,
 
-                     initialDate: DateTime(2023, 9, 21), firstDate: DateTime(2023, 9, 21), lastDate: DateTime(2020, 9, 21))),*/
               GestureDetector(
                 onTap: () async {
                   DateTime? pickedDate = await showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
-                      firstDate: DateTime(1950),
-                      //DateTime.now() - not to allow to choose before today.
+                      firstDate: DateTime(2000),
                       lastDate: DateTime(2100));
                   homePageController.date.value = pickedDate!;
                   if (pickedDate != null) {
-                    print(
-                        pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                    String formattedDate =
-                        DateFormat('yyyy-MM-dd').format(pickedDate);
-                    print(formattedDate);
 
-                    print(
-                        "city${homePageController.selectedValueCity}"); //formatted date output using intl package =>  2021-03-16
                     homePageController.getFullWeatherDataAccordingCity(
                         homePageController.selectedValueCity.value, pickedDate);
                   } else {}
@@ -85,7 +72,7 @@ class HomePageSec extends StatelessWidget {
                     height: 50,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                      color: Colors.tealAccent,
+                      color: Theme.of(context).colorScheme.inversePrimary,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
@@ -94,7 +81,7 @@ class HomePageSec extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Container(
