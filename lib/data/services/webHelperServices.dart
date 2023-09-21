@@ -23,6 +23,23 @@ class WebHelperService {
     }
   }
 
+
+
+  Future<Map<String, dynamic>?> getWeatherByCityDate(String city,var date) async {
+    print("https://api.openweathermap.org/data/2.5/weather?q=$city&appid=d1aa58313f58aa9537e9aba1429fabf5&dt=$date");
+
+    final response = await http.get(Uri.parse("https://api.openweathermap.org/data/2.5/weather?q=$city&appid=d1aa58313f58aa9537e9aba1429fabf5&dt=$date"),
+        headers: {'Content-Type': 'application/json'});
+    print("response body ${response.body}");
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+
+    } else {
+      return null;
+
+    }
+  }
+
   Future<Map<String, dynamic>?> getFullWeather() async {
     try {
       if (HelperLatLong.latitude==null && HelperLatLong.longitude==null) {

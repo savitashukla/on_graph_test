@@ -7,7 +7,7 @@ void main() {
   test('String should be reversed', (){
     String initial = "lucknow";
     HomePageSecondController onj=Get.put(HomePageSecondController());
-    Map<String,dynamic> reversed = onj.getFullWeatherDataAccordingCity(initial);
+    Map<String,dynamic> reversed = onj.getFullWeatherDataAccordingCity(initial,"2023-09-22");
     expect(reversed["cod"], '200');
   });
 }

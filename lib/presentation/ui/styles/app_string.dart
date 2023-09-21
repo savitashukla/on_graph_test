@@ -9,6 +9,7 @@ class GeneralWeatherStateStrings {
   static const String humidity = 'Humidity';
 }
 class DaysTempStrings {
+  static   var selectedValueCity;
   static const String today = 'Today';
   static const String percent = '%';
 }

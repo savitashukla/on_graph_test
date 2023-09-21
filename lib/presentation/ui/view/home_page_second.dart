@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:on_graph_test_demo/presentation/ui/view/widgets/5days_weather.dart';
-import 'package:on_graph_test_demo/presentation/ui/view/widgets/current_weather_container.dart';
-import 'package:on_graph_test_demo/presentation/ui/view/widgets/sun_state.dart';
+import 'package:intl/intl.dart';
+import 'package:on_graph_test_demo/presentation/ui/view/widgets/secondCr/current_weather_container.dart';
+import 'package:on_graph_test_demo/presentation/ui/view/widgets/secondCr/sun_state.dart';
 
 import '../styles/color_resources.dart';
 import '../view_model/homePageSecondController.dart';
@@ -50,6 +50,53 @@ class HomePageSec extends StatelessWidget {
               const SizedBox(
                 height: 35,
               ),
+
+              /* SizedBox(
+                 height: 150,
+                 child: DatePickerDialog(
+                     onDatePickerModeChange: ,
+
+                     initialDate: DateTime(2023, 9, 21), firstDate: DateTime(2023, 9, 21), lastDate: DateTime(2020, 9, 21))),*/
+              GestureDetector(
+                onTap: () async {
+                  DateTime? pickedDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(1950),
+                      //DateTime.now() - not to allow to choose before today.
+                      lastDate: DateTime(2100));
+                  homePageController.date.value = pickedDate!;
+                  if (pickedDate != null) {
+                    print(
+                        pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                    String formattedDate =
+                        DateFormat('yyyy-MM-dd').format(pickedDate);
+                    print(formattedDate);
+
+                    print(
+                        "city${homePageController.selectedValueCity}"); //formatted date output using intl package =>  2021-03-16
+                    homePageController.getFullWeatherDataAccordingCity(
+                        homePageController.selectedValueCity.value, pickedDate);
+                  } else {}
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.tealAccent,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                        child: Obx(
+                            () => Text("${homePageController.date.value}"))),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
               Container(
                   height: 45,
                   margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -75,7 +122,8 @@ class HomePageSec extends StatelessWidget {
                         homePageController.selectedValueCity.value = valuem!;
 
                         homePageController.getFullWeatherDataAccordingCity(
-                            homePageController.selectedValueCity.value);
+                            homePageController.selectedValueCity.value,
+                            homePageController.date);
                       },
                       underline: const SizedBox(),
                       hint: const Padding(
@@ -107,14 +155,11 @@ class HomePageSec extends StatelessWidget {
                       }).toList(),
                     ),
                   )),
-              Obx(() => homePageController.getFullWeatherByCity.value.list !=
+              Obx(() => homePageController.getFullWeatherByCity.value.weather !=
                       null
                   ? Column(
                       children: [
                         CurrentWeatherContainer(
-                            state:
-                                homePageController.getFullWeatherByCity.value),
-                        FiveDaysForecast(
                             state:
                                 homePageController.getFullWeatherByCity.value),
                         SunState(

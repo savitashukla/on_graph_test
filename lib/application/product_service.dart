@@ -6,8 +6,8 @@ class ProductServiceAll {
     return mapV;
   }
 
-  Future<Map<String, dynamic>?> getWeatherByCityR(String city) async {
-    Map<String, dynamic>? mapV = await WebHelperService().getWeatherByCity(city);
+  Future<Map<String, dynamic>?> getWeatherByCityR(String city,var date) async {
+    Map<String, dynamic>? mapV = await WebHelperService().getWeatherByCityDate(city,date);
     return mapV;
   }
 }
