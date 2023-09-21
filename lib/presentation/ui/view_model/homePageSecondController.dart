@@ -6,8 +6,6 @@ import '../../../data/model/currentLocationWeather.dart';
 class HomePageSecondController extends GetxController {
 
   var selectedValueCity="".obs;
-
-
   @override
   void onInit() {
     // TODO: implement onInit

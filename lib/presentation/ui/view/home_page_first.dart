@@ -68,7 +68,6 @@ class HomePageF extends StatelessWidget {
                   SunState(
                       state:
                       homePageController.getFullWeatherDataRes.value),
-                  // GeneralWeatherState(state: homePageController.getFullWeatherDataRes.value),
                   const SizedBox(
                     height: 20,
                   )
@@ -80,8 +79,7 @@ class HomePageF extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                   AutoRouter.of(context).push(HomePageSecRoute());
-
+                   AutoRouter.of(context).push(const HomePageSecRoute());
                 },
                 child: Container(
                   height: 50,
